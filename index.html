@@ -1478,8 +1478,8 @@ function revealText(str) {
         }, 500);
     }
 
-    function applyCoupon() {
-        const input = document.getElementById('coupon-input').value.toUpperCase();
+     function applyCoupon() {
+        const input = document.getElementById('coupon-input').value.toUpperCase().trim();
         const msg = document.getElementById('coupon-msg');
         activeDiscount = 0;
         freeShippingRequested = false;
@@ -1526,6 +1526,9 @@ function revealText(str) {
         } else if (input === "5%") {
             activeDiscount = 0.05;
             msg.innerHTML = "<span style='color:green'>Desconto de 5% aplicado!</span>";
+        } else if (input === "NUANCE5") { // Exemplo de cupom de valor fixo ou % caso queira adicionar
+            activeDiscount = 0.05;
+            msg.innerHTML = "<span style='color:green'>Cupom NUANCE5 aplicado!</span>";
         } else {
             msg.innerHTML = "<span style='color:red'>Cupom inválido.</span>";
         }
