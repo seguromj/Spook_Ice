@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/Favicon.jpg" type="image/x-con">
-	<title>NUANCE - Cardápio Digital</title>
+	<title>Geladinhos e Bombons da casa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #FFD700; 
@@ -633,26 +633,26 @@
     <hr>
     <div class="categories">
         <button class="category-btn active" onclick="filterCategory('all')">Todos</button>
-        <button class="category-btn" onclick="filterCategory('alcool')">Drinks com Álcool</button>
-        <button class="category-btn" onclick="filterCategory('sem-alcool')">Sem Álcool</button>
+        <button class="category-btn" onclick="filterCategory('alcool')">Geladinhos</button>
+        <button class="category-btn" onclick="filterCategory('sem-alcool')">Bombons</button>
     </div>
         <div class="categories">
-        <button class="category-btn" onclick="filterCategory('copao')">Copão</button>
+        <button class="category-btn" onclick="filterCategory('copao')">Geladinhos G</button>
         <button class="category-btn" onclick="filterCategory('combo')">Combos</button>
     </div>
 
     <div id="menu-sections">
         <div class="menu-section" data-category="alcool">
-            <h2>Drinks com Álcool</h2>
+            <h2>Geladinhos</h2>
                 
             <div class="carousel-container drag-scroll">
                     
                 <div class="product-card" data-id="1">
                     <img src="img-produtos/Drinks-c-alcool/caipifrutas.jpg">
-                    <h3>CaipFrutas</h3>
-                        <span class="old-price">R$ 12.00</span> 
-                        <span class="price">R$ 10.00 
-                        <span class="badge-ml">350ml</span>
+                    <h3>Coco e Tapioca</h3>
+                        <span class="old-price">R$ 2.50</span> 
+                        <span class="price">R$ 2.00 
+                        <span class="badge-ml">350g</span>
                         </span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('CaipFrutas', 10.00, ['🍋‍🟩 Limão 🍋‍🟩', '🍓 Morango 🍓', '🥂 Maracujá 🥂', '🥭 Manga 🥭'], 'img-produtos/Drinks-c-alcool/caipifrutas.jpg')">Escolher Sabor</button>
 				</div>
@@ -674,8 +674,8 @@
                         <span class="price">R$ 15.00
                         <span class="badge-ml">350ml</span>
                         </span>
-                    <button class="btn-add btn-flavor" onclick="openFlavorModal('Mojito', 15.00, ['🍋‍🟩 Limão 🍋‍🟩', '🍓 Morango 🍓', '🥂 Maracujá 🥂', '🥭 Manga 🥭'], 'img-produtos/Drinks-c-alcool/Mojitos.jpg')">Escolher Sabor</button>
-                </div>
+				        <button class="btn-add" onclick="animateAdd(this); addToCart('Moscow Mule', 20.00, 'img-produtos/Drinks-c-alcool/Moscow-mule.jpg')">Adicionar</button>
+                    </div>
                     
                 <div class="product-card" data-id="4">
                     <img src="img-produtos/Drinks-c-alcool/Moscow-mule.jpg">
