@@ -1,4 +1,4 @@
-
+a
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -1604,20 +1604,35 @@ function revealText(str) {
         document.getElementById('payment-modal').style.display = 'block';
     }
 
-    function finalizarWhatsApp() {
+
+
+	    function finalizarWhatsApp() {
         playSuccessSound();
         const type = document.getElementById('delivery-type').value;
         let msg = `*NOVO PEDIDO - Spook Ice*\n\n`;
         
-        if (type === 'Delivery') {
-            msg += `*Cliente:* ${document.getElementById('dev-nome').value}\n*WhatsApp:* ${document.getElementById('dev-contato').value}\n*CEP:* ${document.getElementById('dev-CEP').value}\n*Endereço:* ${document.getElementById('dev-rua').value}, ${document.getElementById('dev-num').value}\n*Bairro:* ${document.getElementById('dev-bairro').value}\n`;
-            const complemento = document.getElementById('dev-comp').value;
-            if (complemento) msg += `*Comp:* ${complemento}\n`;
+        // --- INFORMAÇÕES DO CLIENTE ADICIONADAS ---
+        const nomeCli = document.getElementById('dev-nome').value;
+        const zapCli = document.getElementById('dev-contato').value;
+        const cepCli = document.getElementById('dev-CEP').value;
+        const bairroCli = document.getElementById('dev-bairro').value;
+        const ruaCli = document.getElementById('dev-rua').value;
+        const numCli = document.getElementById('dev-num').value;
+        const compCli = document.getElementById('dev-comp').value;
+
+        if (type === 'delivery') {
+            msg += `*DADOS PARA ENTREGA:*\n`;
+            msg += `*Nome:* ${nomeCli}\n`;
+            msg += `*WhatsApp:* ${zapCli}\n`;
+            msg += `*CEP:* ${cepCli}\n`;
+            msg += `*Endereço:* ${ruaCli}, Nº ${numCli}\n`;
+            msg += `*Bairro:* ${bairroCli}\n`;
+            if (compCli) msg += `*Complemento:* ${compCli}\n`;
             
             if (freeShippingRequested) {
-                msg += `*Entrega:* Delivery (FRETE GRÁTIS APLICADO)\n`;
+                msg += `*Frete:* Grátis (Cupom Aplicado)\n`;
             } else {
-                msg += `*Entrega:* Delivery (+ Taxa R$ 10,00)\n`;
+                msg += `*Frete:* Taxa R$ 10,00\n`;
             }
         }
 
@@ -1640,6 +1655,11 @@ function revealText(str) {
         location.reload();
     }
 
+    
+
+
+
+	
     function filterCategory(cat) {
         document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
         if (event) event.target.classList.add('active');
