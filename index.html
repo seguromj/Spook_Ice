@@ -1604,14 +1604,11 @@ function revealText(str) {
         document.getElementById('payment-modal').style.display = 'block';
     }
 
-
-
-	    function finalizarWhatsApp() {
+          function finalizarWhatsApp() {
         playSuccessSound();
         const type = document.getElementById('delivery-type').value;
-        let msg = `*NOVO PEDIDO - Spook Ice*\n\n`;
         
-        // --- INFORMAÇÕES DO CLIENTE ADICIONADAS ---
+        // --- COLETANDO DADOS PARA A MENSAGEM E PLANILHA ---
         const nomeCli = document.getElementById('dev-nome').value;
         const zapCli = document.getElementById('dev-contato').value;
         const cepCli = document.getElementById('dev-CEP').value;
@@ -1619,7 +1616,29 @@ function revealText(str) {
         const ruaCli = document.getElementById('dev-rua').value;
         const numCli = document.getElementById('dev-num').value;
         const compCli = document.getElementById('dev-comp').value;
+        const totalFinal = document.getElementById('pay-total').innerText;
+        let produtosTxt = cart.map(i => `${i.quantity}x ${i.name}`).join(', ');
 
+        // --- GARANTINDO O ENVIO PARA A PLANILHA ---
+        let dadosParaPlanilha = {
+            produtos: produtosTxt, 
+            total: totalFinal, 
+            coleta: type,
+            nome: nomeCli, 
+            contato: zapCli, 
+            cpf: "", // Mantendo compatibilidade com sua função original
+            cep: cepCli, 
+            bairro: bairroCli, 
+            rua: ruaCli, 
+            numero: numCli, 
+            comp: compCli,
+            pagamentoLink: currentPaymentLink
+        };
+        enviarParaPlanilha(dadosParaPlanilha);
+
+        // --- CONSTRUINDO A MENSAGEM DO WHATSAPP ---
+        let msg = `*NOVO PEDIDO - Spook Ice*\n\n`;
+        
         if (type === 'delivery') {
             msg += `*DADOS PARA ENTREGA:*\n`;
             msg += `*Nome:* ${nomeCli}\n`;
@@ -1627,7 +1646,7 @@ function revealText(str) {
             msg += `*CEP:* ${cepCli}\n`;
             msg += `*Endereço:* ${ruaCli}, Nº ${numCli}\n`;
             msg += `*Bairro:* ${bairroCli}\n`;
-            if (compCli) msg += `*Complemento:* ${compCli}\n`;
+            if (compCli) msg += `*Comp:* ${compCli}\n`;
             
             if (freeShippingRequested) {
                 msg += `*Frete:* Grátis (Cupom Aplicado)\n`;
@@ -1641,7 +1660,7 @@ function revealText(str) {
         msg += `\n*ÍTENS DO PEDIDO:*\n`;
         cart.forEach(i => msg += `✅ ${i.quantity}x ${i.name} (R$ ${(i.price * i.quantity).toFixed(2)})\n`);
         
-        msg += `\n*TOTAL A PAGAR: R$ ${document.getElementById('pay-total').innerText}*`;
+        msg += `\n*TOTAL A PAGAR: R$ ${totalFinal}*`;
         
         if(currentPaymentLink !== "#") {
             msg += `\n\n*LINK DE PAGAMENTO:* \n${currentPaymentLink}`;
@@ -1649,12 +1668,15 @@ function revealText(str) {
         
         msg += `\n\n_Por favor, não esqueça de nos enviar o comprovante de pagamento._`;
         
+        // --- LIMPEZA E REDIRECIONAMENTO ---
         localStorage.removeItem('beeDrinksCart');
         cart = [];
         window.open(`https://wa.me/5562995679219?text=${encodeURIComponent(msg)}`);
         location.reload();
     }
 
+
+	    
     
 
 
