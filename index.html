@@ -593,6 +593,42 @@
     transition: all 2.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+
+/* Estilo para o Novo Alerta (Toast) */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: var(--dark);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s;
+    opacity: 0;
+    border: 2px solid var(--primary);
+}
+
+.toast-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-icon {
+    color: var(--primary);
+    font-size: 1.2em;
+}
+
+
+
+		
+		
 /* 📢Oculta o botão Pagar Agora sem remover o código */
 #pay-link {
     display: none !important;
@@ -1627,18 +1663,43 @@ function revealText(str) {
         i.value = v;
     }
 
-    function toggleCart() { 
-        const m = document.getElementById('cart-modal'); 
-        
-        // BLOQUEIA A ENTRADA SE O CARRINHO ESTIVER VAZIO
-        if (cart.length === 0) {
-            alert("Seu carrinho está vazio! Adicione algum drink primeiro.");
-            return;
-        }
+	//=======================================
+	// Função para mostrar o alerta bonito
+    afunction showToast(message) {
+    // Remove toast anterior se existir
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
 
-        renderCartItems(); 
-        m.style.display = m.style.display === 'block' ? 'none' : 'block'; 
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `<i class="fas fa-exclamation-circle toast-icon"></i> ${message}`;
+    document.body.appendChild(toast);
+
+    // Força o reflow para a animação funcionar
+    setTimeout(() => toast.classList.add('show'), 100);
+
+    // Remove após 3 segundos
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+
+    function toggleCart() { 
+    const m = document.getElementById('cart-modal'); 
+    
+    // BLOQUEIA A ENTRADA SE O CARRINHO ESTIVER VAZIO
+    if (cart.length === 0) {
+        // TROCADO: De alert(...) para showToast(...)
+        showToast("Seu carrinho está vazio! Adicione algo primeiro.");
+        return;
     }
+
+    renderCartItems(); 
+    m.style.display = m.style.display === 'block' ? 'none' : 'block'; 
+}
+
 
     function openCheckout() { document.getElementById('cart-modal').style.display = 'none'; document.getElementById('checkout-modal').style.display = 'block'; }
     function closeCheckout() { document.getElementById('checkout-modal').style.display = 'none'; document.getElementById('cart-modal').style.display = 'block'; }
