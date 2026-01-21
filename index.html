@@ -1664,8 +1664,8 @@ function revealText(str) {
     }
 
 	//=======================================
-	// Função para mostrar o alerta bonito
-    afunction showToast(message) {
+    // Função para mostrar o alerta bonito
+function showToast(message) {
     // Remove toast anterior se existir
     const existingToast = document.querySelector('.toast-notification');
     if (existingToast) existingToast.remove();
@@ -1675,8 +1675,10 @@ function revealText(str) {
     toast.innerHTML = `<i class="fas fa-exclamation-circle toast-icon"></i> ${message}`;
     document.body.appendChild(toast);
 
-    // Força o reflow para a animação funcionar
-    setTimeout(() => toast.classList.add('show'), 100);
+    // Trigger para a animação de entrada
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
 
     // Remove após 3 segundos
     setTimeout(() => {
@@ -1685,13 +1687,12 @@ function revealText(str) {
     }, 3000);
 }
 
-
-    function toggleCart() { 
+   function toggleCart() { 
     const m = document.getElementById('cart-modal'); 
     
     // BLOQUEIA A ENTRADA SE O CARRINHO ESTIVER VAZIO
     if (cart.length === 0) {
-        // TROCADO: De alert(...) para showToast(...)
+        // Agora usando a função corrigida
         showToast("Seu carrinho está vazio! Adicione algo primeiro.");
         return;
     }
@@ -1699,6 +1700,9 @@ function revealText(str) {
     renderCartItems(); 
     m.style.display = m.style.display === 'block' ? 'none' : 'block'; 
 }
+
+
+    
 
 
     function openCheckout() { document.getElementById('cart-modal').style.display = 'none'; document.getElementById('checkout-modal').style.display = 'block'; }
