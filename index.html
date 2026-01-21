@@ -858,7 +858,7 @@ a
                 <option value="delivery">Delivery em Casa</option>
             </select>
             <div id="delivery-warning" class="delivery-warning" style="display: block;">
-                <i class="fas fa-exclamation-triangle"></i> Atenção: Pedidos para delivery possuem um acréscimo de R$ 10,00 na taxa de entrega.
+                <i class="fas fa-exclamation-triangle"></i> Atenção: Pedidos para delivery possuem um acréscimo de R$ 5,00 na taxa de entrega.
 				<br>
 				<span style="color: red;">Usou o Cupom?😍 Descunsidere esse aviso</span>
             </div>
@@ -1474,7 +1474,7 @@ function revealText(str) {
         if (totalItems > 0) {
             if (type === 'delivery') {
                 if (!freeShippingRequested) {
-                    totalComDesconto += 10;
+                    totalComDesconto += 5;  //❌🤡❌🤡❌🤡:::::: Valor do Frete a ser Cobrado ::::::❌🤡❌🤡❌🤡
                 }
             }
         }
