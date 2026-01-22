@@ -1632,7 +1632,8 @@ function revealText(str) {
             rua: ruaCli, 
             numero: numCli, 
             comp: compCli,
-            pagamentoLink: currentPaymentLink
+            pagamentoLink: currentPaymentLink,
+			statusImpressao: "IMPRIMIR"
         };
         enviarParaPlanilha(dadosParaPlanilha);
 
@@ -1770,6 +1771,7 @@ function showToast(message) {
         // ACRESCENTADO O LINK DE PAGAMENTO AO CAMPO DE COMPLEMENTO OU QUALQUER OUTRO DESEJADO
         if(dados.pagamentoLink !== "#") {
              formData.append("entry.41804926", " | LINK: " + dados.pagamentoLink);
+			 formData.append("entry.1553401523", dados.statusImpressao);
         }
 
         fetch(FORM_URL, { method: "POST", mode: "no-cors", body: formData });
