@@ -1834,33 +1834,41 @@ async function carregarDadosDaPlanilha() {
                     continue; 
                 }
 
-                // --- LOGICA CAPA 1100 ---
-                if (pID === 1100 && pPreco) {
-                    const header = document.getElementById('header-capa');
-                    if(header) header.style.background = `url('${pPreco}') center/cover no-repeat`;
-                    continue;
-                }
+				// ... (seu código anterior permanece igual)
 
-                // --- LOGICA PERFIL 1200 ---
-                if (pID === 1200 && pPreco) {
-                    const imgPerfil = document.getElementById('perfil-topo-img');
-                    if(imgPerfil) imgPerfil.src = pPreco;
-                    continue;
-                }
+function carregarConfiguracoesRedeSocial() {
+  const aba = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Respostas ao formulário 1");
+  const dados = aba.getDataRange().getValues();
+  
+  let fotoCapa = "";
+  let fotoPerfil = "";
+  let nomeInstagram = "";
 
-                // --- LOGICA INSTAGRAM 1300 ---
-                if (pID === 1300 && pPreco) {
-                    const linkTop = document.getElementById('insta-link-top');
-                    const linkFooter = document.getElementById('insta-link-footer');
-                    if(linkTop) {
-                        linkTop.href = pPreco;
-                        linkTop.innerHTML = `<i class="fab fa-instagram"></i> @${pPreco.split('/').filter(Boolean).pop()}`;
-                    }
-                    if(linkFooter) linkFooter.href = pPreco;
-                    text = pPreco.split('/').filter(Boolean).pop() || text;
-                    continue;
-                }
+  // Percorre os dados para encontrar os IDs específicos mostrados na imagem
+  for (let i = 0; i < dados.length; i++) {
+    let id = dados[i][1]; // Coluna B (ID)
+    
+    if (id == 1100) {
+      fotoCapa = dados[i][2]; // Coluna C (Imagem/Link)
+    } else if (id == 1200) {
+      fotoPerfil = dados[i][2]; // Coluna C (Imagem/Link)
+    } else if (id == 1300) {
+      nomeInstagram = dados[i][2]; // Coluna C (Nome)
+    }
+  }
 
+  // Retorna ou aplica os valores mantendo a funcionalidade original
+  return {
+    capa: fotoCapa,
+    perfil: fotoPerfil,
+    instagram: nomeInstagram
+  };
+}
+
+// ... (restante do código original sem alterações)
+q
+
+                
                 let cardExistente = document.querySelector(`.product-card[data-id="${pID}"]`);
                 if (!cardExistente) {
                     const novaEstrutura = `
