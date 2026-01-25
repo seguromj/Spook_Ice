@@ -1835,28 +1835,22 @@ async function carregarDadosDaPlanilha() {
                 }
 
                 // CORREÇÃO: CAPTURAR CONFIGURAÇÕES DE REDE SOCIAL (CAPA, PERFIL, NOME)
-if (pID === 1100) { // FOTO DE CAPA
-    if (pImagem) {
-        // Usa trim() para remover espaços acidentais que deixam a imagem branca
-        const urlLimpa = pImagem.trim();
-        document.getElementById('header-capa').style.backgroundImage = "url('" + urlLimpa + "')";
-    }
-    continue;
-}
-if (pID === 1200) { // FOTO DE PERFIL
-    if (pImagem) {
-        document.getElementById('perfil-topo-img').src = pImagem.trim();
-    }
-    continue;
-}
-if (pID === 1300) { // NOME DO INSTAGRAM
-    const instaUser = pNome; 
-    const textInsta = instaUser.replace('@', '').trim(); // Atualiza variável da animação
-    document.getElementById('insta-link-top').innerHTML = `<i class="fab fa-instagram"></i> ${instaUser}`;
-    document.getElementById('insta-link-top').href = `https://www.instagram.com/${textInsta}`;
-    document.getElementById('insta-link-footer').href = `https://www.instagram.com/${textInsta}`;
-    continue;
-}
+                if (pID === 1100) { // FOTO DE CAPA
+                    document.getElementById('header-capa').style.backgroundImage = `url('${pImagem}')`;
+                    continue;
+                }
+                if (pID === 1200) { // FOTO DE PERFIL
+                    document.getElementById('perfil-topo-img').src = pImagem;
+                    continue;
+                }
+                if (pID === 1300) { // NOME DO INSTAGRAM
+                    const instaUser = pNome; 
+                    text = instaUser.replace('@', ''); // Atualiza variável da animação
+                    document.getElementById('insta-link-top').innerHTML = `<i class="fab fa-instagram"></i> ${instaUser}`;
+                    document.getElementById('insta-link-top').href = `https://www.instagram.com/${text}`;
+                    document.getElementById('insta-link-footer').href = `https://www.instagram.com/${text}`;
+                    continue;
+                }
 
 
                 if(!pNome) continue;
