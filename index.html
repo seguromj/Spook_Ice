@@ -1,4 +1,3 @@
-a
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -659,9 +658,9 @@ a
     </div>
 </div>
 
-<header>
+<header id="header-capa">
     <div class="profile-img-container">
-        <img src="IMG/Logo.png" alt="Logo" class="profile-img">
+        <img src="IMG/Logo.png" alt="Logo" class="profile-img" id="perfil-topo-img">
     </div>
 </header>
 
@@ -669,7 +668,7 @@ a
     <div class="store-info">
         <span><i class="fas fa-map-marker-alt"></i> Nossa localização - Anápolis</span>
         <div id="store-status" class="status-badge"></div>
-        <a href="https://www.instagram.com/nuance_drinks?igsh=MXEwcDh1Y3FpenozNw==" target="_blank" class="insta-link"><i class="fab fa-instagram"></i> @nuance_drinks</a>
+        <a id="insta-link-top" href="https://www.instagram.com/nuance_drinks?igsh=MXEwcDh1Y3FpenozNw==" target="_blank" class="insta-link"><i class="fab fa-instagram"></i> @nuance_drinks</a>
     </div>
     
     <hr>
@@ -744,26 +743,7 @@ a
 <div class="menu-section" data-category="copao">
             <h2>Bombons</h2>
                 
-   <!-- <div style="text-align:center; margin: 20px 0;">
-    <h3 class="h3-pegar-cupom" style="display:block; width:100%; margin-bottom:10px">Faça seu <strong>COPÃO</strong><br>👇 Cliqui Aqui 👇</h3>
-    <a href="Fazer-Copao.html" class="wave-button">
-    <span class="letter">F</span>
-    <span class="letter">A</span>
-    <span class="letter">Z</span>
-    <span class="letter">E</span>
-    <span class="letter">R</span>
-    <span class="letter">&nbsp;</span>
-    <span class="letter">C</span>
-    <span class="letter">O</span>
-    <span class="letter">P</span>
-    <span class="letter">Ã</span>
-    <span class="letter">O</span>
-    </a>
-    </div>  -->
-                
-                
-                
-            <div class="carousel-container drag-scroll">
+   <div class="carousel-container drag-scroll">
                     
                 <div class="product-card" data-id="300">
                     <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300">
@@ -972,7 +952,7 @@ a
     </div>
 
 
-    <a href="https://www.instagram.com/nuance_drinks?igsh=MXEwcDh1Y3FpenozNw==" target="_blank" class="logo-container45">
+    <a href="https://www.instagram.com/nuance_drinks?igsh=MXEwcDh1Y3FpenozNw==" target="_blank" class="logo-container45" id="insta-link-footer">
         <svg id="insta-icon" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -1154,7 +1134,7 @@ setInterval(() => {
 	
     const icon = document.getElementById('insta-icon');
 const brandNameContainer = document.getElementById('brand-name');
-const text = "nuance _drinks";
+let text = "nuance _drinks";
 
 
 function revealText(str) {
@@ -1182,49 +1162,17 @@ function revealText(str) {
 
     // --- NOVA ESTRUTURA DE CUPONS POR BLOCOS ---
     const CUPONS_POR_BLOCO = {
-	0: ["NU-QVJ6", "NU-F8DJ", "NU-KON7", "NU-UJ0K", "NU-8RH7", "NU-FMCJ", "NU-AP51", "NU-PVZZ", "NU-PZ2X", "NU-0WDO", "NU-DNC2", "NU-ICOJ", "NU-MT4A", "NU-J80H", "NU-XY1G", "NU-BYGA", "NU-TLPW", "NU-DRPE", "NU-ZHTW", "NU-CZAU", "NU-Y81A", "NU-CEN9", "NU-PMFX", "NU-DA3B", "NU-LRGS", "NU-1NGL", "NU-PVEX", "NU-O3LU", "NU-FFSS", "NU-6O50", "NU-YWAQ"], // 06:00 - 08:59
-	1: ["NU-F35B", "NU-GDZ2", "NU-QEZ7", "NU-3V3Y", "NU-YX7F", "NU-Q6CN", "NU-2CDT", "NU-MEEK", "NU-NB2W", "NU-C98B", "NU-9DVM", "NU-S896", "NU-JKEV", "NU-J6BV", "NU-ZU29", "NU-WKQ6", "NU-PH8S", "NU-9YW9", "NU-KTIK", "NU-0CKM", "NU-N655", "NU-NS4Y", "NU-DABD", "NU-LTJL", "NU-TAIE", "NU-L186", "NU-RI24", "NU-PBWY", "NU-IU2V", "NU-1AHT", "NU-FSDD"], // 09:00 - 11:59
-	2: ["NU-6NZ6", "NU-R1M4", "NU-JADS", "NU-VEGM", "NU-I4JD", "NU-PBPA", "NU-MC3D", "NU-OJE1", "NU-CZJB", "NU-UDD3", "NU-DWCD", "NU-L5KN", "NU-JPKT", "NU-10YO", "NU-VSA1", "NU-ATE3", "NU-JG00", "NU-JBG2", "NU-FQQ3", "NU-2427", "NU-VICO", "NU-JQIX", "NU-03JA", "NU-48RM", "NU-6MCK", "NU-MP7T", "NU-5CD5", "NU-0CRU", "NU-6AM2", "NU-BF8P", "NU-E2QE"], // 12:00 - 14:59
-	3: ["NU-WK39", "NU-7YJG", "NU-Z98O", "NU-0PB1", "NU-R7MJ", "NU-YPQH", "NU-JRJT", "NU-SYJN", "NU-LA3O", "NU-43RN", "NU-HD9I", "NU-556O", "NU-4PY5", "NU-TAER", "NU-4S4J", "NU-LND9", "NU-GM5M", "NU-I5F7", "NU-X81K", "NU-P7ZZ", "NU-YHXJ", "NU-CH41", "NU-KDD8", "NU-GG1T", "NU-7TGM", "NU-TGAN", "NU-5A5P", "NU-67QH", "NU-N51U", "NU-ROX7", "NU-85CD"], // 15:00 - 17:59
-	4: ["NU-G69N", "NU-9WVI", "NU-LCNK", "NU-411K", "NU-36Y2", "NU-S3Q6", "NU-6OFP", "NU-XHX1", "NU-ZZXB", "NU-OEWH", "NU-HW9F", "NU-7G9Q", "NU-2EEW", "NU-0J1P", "NU-X41F", "NU-36UP", "NU-49R6", "NU-RN72", "NU-1GA0", "NU-24Q9", "NU-1JHL", "NU-XXE0", "NU-D7Q8", "NU-LC9K", "NU-C75A", "NU-KGGO", "NU-O333", "NU-JTHR", "NU-3923", "NU-RFU0", "NU-CH7W"], // 18:00 - 20:59
-	5: ["NU-EJ9Y", "NU-8JLY", "NU-4J79", "NU-RCKG", "NU-5QDZ", "NU-T9GK", "NU-RKBW", "NU-OET2", "NU-CIHG", "NU-HUFO", "NU-UIJL", "NU-NV3D", "NU-0M9R", "NU-IR8V", "NU-S1X6", "NU-P8FL", "NU-5UUR", "NU-YO6K", "NU-FWK5", "NU-PDQD", "NU-J6GP", "NU-WK1V", "NU-18R2", "NU-AP90", "NU-TFJY", "NU-2X75", "NU-MFIB", "NU-RL3Q", "NU-85BH", "NU-EBRG", "NU-02GR"], // 21:00 - 23:59
-	6: ["NU-SQAH", "NU-5EFC", "NU-LL9A", "NU-K7QT", "NU-U25O", "NU-RLE6", "NU-B1SP", "NU-77LY", "NU-8MH7", "NU-LBK4", "NU-NY4P", "NU-B9F9", "NU-YI6T", "NU-C34U", "NU-X79I", "NU-8DNY", "NU-KYV6", "NU-ROVK", "NU-65X8", "NU-SABM", "NU-J3T7", "NU-BIDJ", "NU-G3DL", "NU-HF33", "NU-IPM5", "NU-UMVD", "NU-5UHU", "NU-YWJ9", "NU-FI7C", "NU-ECFZ", "NU-NGZ4"], // 00:00 - 02:59
-	7: ["NU-UP31", "NU-Q6G6", "NU-YD8Z", "NU-TZTR", "NU-4PWT", "NU-GZ12", "NU-86L5", "NU-IFFV", "NU-B5Q4", "NU-02A4", "NU-NIRX", "NU-5R9W", "NU-J6FC", "NU-TTNJ", "NU-VVWU", "NU-SGSV", "NU-YB5Q", "NU-POXX", "NU-SM7S", "NU-6H74", "NU-KYCY", "NU-J2VW", "NU-9GZB", "NU-DKZ9", "NU-QEKW", "NU-YYI2", "NU-X3Z2", "NU-CEN1", "NU-2HGW", "NU-POCI", "NU-NB4H"] // 03:00 - 05:59
+	0: ["NU-QVJ6", "NU-F8DJ", "NU-KON7", "NU-UJ0K", "NU-8RH7", "NU-FMCJ",  "NU-O3LU", "NU-FFSS", "NU-6O50", "NU-YWAQ"], // 06:00 - 08:59
+	1: ["NU-F35B", "NU-GDZ2", "NU-QEZ7",  "NU-KTIK", "NU-0CKM", "NU-N655", "NU-NS4Y", "NU-DABD", "NU-LTJL", "NU-TAIE", "NU-L186", "NU-RI24", "NU-PBWY", "NU-IU2V", "NU-1AHT", "NU-FSDD"], // 09:00 - 11:59
+	2: ["NU-6NZ6", "NU-R1M4", "NU-JADS",  "NU-FQQ3", "NU-2427", "NU-VICO", "NU-JQIX", "NU-03JA", "NU-48RM", "NU-6MCK", "NU-MP7T", "NU-5CD5", "NU-0CRU", "NU-6AM2", "NU-BF8P", "NU-E2QE"], // 12:00 - 14:59
+	3: ["NU-WK39", "NU-7YJG", "NU-Z98O", "NU-0PB1", "NU-R7MJ", "NU-YPQH",  "NU-67QH", "NU-N51U", "NU-ROX7", "NU-85CD"], // 15:00 - 17:59
+	4: ["NU-G69N", "NU-9WVI", "NU-LCNK", "NU-411K", "NU-36Y2", "NU-S3Q6",  "NU-XXE0", "NU-D7Q8", "NU-LC9K", "NU-C75A", "NU-KGGO", "NU-O333", "NU-JTHR", "NU-3923", "NU-RFU0", "NU-CH7W"], // 18:00 - 20:59
+	5: ["NU-EJ9Y", "NU-8JLY", "NU-4J79",  "NU-FWK5", "NU-PDQD", "NU-J6GP", "NU-WK1V", "NU-18R2", "NU-AP90", "NU-TFJY", "NU-2X75", "NU-MFIB", "NU-RL3Q", "NU-85BH", "NU-EBRG", "NU-02GR"], // 21:00 - 23:59
+	6: ["NU-SQAH", "NU-5EFC", "NU-LL9A", "NU-K7QT", "NU-U25O", "NU-RLE6",  "NU-IPM5", "NU-UMVD", "NU-5UHU", "NU-YWJ9", "NU-FI7C", "NU-ECFZ", "NU-NGZ4"], // 00:00 - 02:59
+	7: ["NU-UP31", "NU-Q6G6", "NU-YD8Z", "NU-TZTR", "NU-4PWT", "NU-GZ12", "NU-86L5", "NU-IFFV", "NU-B5Q4",  "NU-CEN1", "NU-2HGW", "NU-POCI", "NU-NB4H"] // 03:00 - 05:59
 };
      const linksDePagamentoFixos = {
         "1.00": "https://mpago.la/2AXmnns", "2.00": "https://mpago.la/1XRx3MU", "3.00": "https://mpago.la/2hCQdie",
-        "4.00": "https://mpago.la/21V68Ki", "5.00": "https://mpago.la/2GCnr3j", "6.00": "https://mpago.la/127jvNn",
-        "7.00": "https://mpago.la/2p6uptE", "8.00": "https://mpago.la/11j2Jua", "9.00": "https://mpago.la/1eFbxkN",
-        "10.00": "https://mpago.la/2cRxjg5", "11.00": "https://mpago.la/2LS6XMT", "12.00": "https://mpago.la/1ssdztd",
-        "13.00": "https://mpago.la/2pEQ3rJ", "14.00": "https://mpago.la/2ShtRu7", "15.00": "https://mpago.la/2MdLA1J",
-        "16.00": "https://mpago.la/122M9xy", "17.00": "https://mpago.la/1hZpFv4", "18.00": "https://mpago.la/2cvpYLD",
-        "19.00": "https://mpago.la/2fHzer1", "20.00": "https://mpago.la/2d4EhNH", "21.00": "https://mpago.la/2wtPbWJ",
-        "22.00": "https://mpago.la/1VEbPD6", "23.00": "https://mpago.la/1u4N2eZ", "24.00": "https://mpago.la/2tz3Thg",
-        "25.00": "https://mpago.la/24MoD81", "26.00": "https://mpago.la/1gQ85w8", "27.00": "https://mpago.la/2ncRJDR",
-        "28.00": "https://mpago.la/1rHT6fQ", "29.00": "https://mpago.la/1wP8yiX", "30.00": "https://mpago.la/1wEbmXA",
-        "31.00": "https://mpago.la/23tCjAH", "32.00": "https://mpago.la/1H7ACLr", "33.00": "https://mpago.la/2P1Snuu",
-        "34.00": "https://mpago.la/2dM8pXF", "35.00": "https://mpago.la/2ccdL4T", "36.00": "https://mpago.la/2LUutRb",
-        "37.00": "https://mpago.la/2SaBCdk", "38.00": "https://mpago.la/32a4XhN", "39.00": "https://mpago.la/1uK9SV6",
-        "40.00": "https://mpago.la/22fHXUh", "41.00": "https://mpago.la/2FJM5SR", "42.00": "https://mpago.la/2majQ3e",
-        "43.00": "https://mpago.la/2xuPWxe", "44.00": "https://mpago.la/1xnrgBU", "45.00": "https://mpago.la/2YxWyeN",
-        "46.00": "https://mpago.la/1C8B2Ys", "47.00": "https://mpago.la/2BHbwKb", "48.00": "https://mpago.la/2wJ79yX",
-        "49.00": "https://mpago.la/1q1CXu8", "50.00": "https://mpago.la/18PNJgh", "51.00": "https://mpago.la/29ngSEP",
-        "52.00": "https://mpago.la/1wpPNU6", "53.00": "https://mpago.la/2w4JghY", "54.00": "https://mpago.la/2wP8Zzy",
-        "55.00": "https://mpago.la/1uNDuE1", "56.00": "https://mpago.la/2HwcPeo", "57.00": "https://mpago.la/2SrqAtv",
-        "58.00": "https://mpago.la/2QddsUQ", "59.00": "https://mpago.la/1KyezXR", "60.00": "https://mpago.la/32XUkFX",
-        "61.00": "https://mpago.la/2LdRTmk", "62.00": "https://mpago.la/31yQrfo", "63.00": "https://mpago.la/2Nj6SQ3",
-        "64.00": "https://mpago.la/1AUtYYJ", "65.00": "https://mpago.la/2dJLWg6", "66.00": "https://mpago.la/2Qq6ofn",
-        "67.00": "https://mpago.la/2HSYSG8", "68.00": "https://mpago.la/2agtz9z", "69.00": "https://mpago.la/1yzPBDV",
-        "70.00": "https://mpago.la/19j57aj", "71.00": "https://mpago.la/2NN176T", "72.00": "https://mpago.la/2bgb4hq",
-        "73.00": "https://mpago.la/1Pjn7DD", "74.00": "https://mpago.la/1bnsqvS", "75.00": "https://mpago.la/1ScZwvW",
-        "76.00": "https://mpago.la/2pF999n", "77.00": "https://mpago.la/25ZZdoS", "78.00": "https://mpago.la/1df8NXT",
-        "79.00": "https://mpago.la/2c5ZvKh", "80.00": "https://mpago.la/2StD47t", "81.00": "https://mpago.la/1g2b3ky",
-        "82.00": "https://mpago.la/1EQriMV", "83.00": "https://mpago.la/2Ur8gAJ", "84.00": "https://mpago.la/12trufq",
-        "85.00": "https://mpago.la/2UkJGkF", "86.00": "https://mpago.la/1N2Zw5R", "87.00": "https://mpago.la/2QSwF7p",
-        "88.00": "https://mpago.la/2CnEweW", "89.00": "https://mpago.la/1qjGyST", "90.00": "https://mpago.la/18ZpYMG",
-        "91.00": "https://mpago.la/2jXbcve", "92.00": "https://mpago.la/1G4GRb4", "93.00": "https://mpago.la/1G4GRb4",
-        "94.00": "https://mpago.la/2L5SfaX", "95.00": "https://mpago.la/1T8HvbD", "96.00": "https://mpago.la/16i17Um",
-        "97.00": "https://mpago.la/2ULjkPj", "98.00": "https://mpago.la/2WWWm1m", "99.00": "https://mpago.la/2wQMxrn",
         "100.00": "https://mpago.la/14fLE5V",
     };
     // AQUI ESTÁ A ÚNICA FUNÇÃO ONLOAD QUE IMPORTA:
@@ -1884,6 +1832,33 @@ async function carregarDadosDaPlanilha() {
                         if (typeof checkStoreStatus === "function") checkStoreStatus();
                     }
                     continue; 
+                }
+
+                // --- LOGICA CAPA 1100 ---
+                if (pID === 1100 && pPreco) {
+                    const header = document.getElementById('header-capa');
+                    if(header) header.style.background = `url('${pPreco}') center/cover no-repeat`;
+                    continue;
+                }
+
+                // --- LOGICA PERFIL 1200 ---
+                if (pID === 1200 && pPreco) {
+                    const imgPerfil = document.getElementById('perfil-topo-img');
+                    if(imgPerfil) imgPerfil.src = pPreco;
+                    continue;
+                }
+
+                // --- LOGICA INSTAGRAM 1300 ---
+                if (pID === 1300 && pPreco) {
+                    const linkTop = document.getElementById('insta-link-top');
+                    const linkFooter = document.getElementById('insta-link-footer');
+                    if(linkTop) {
+                        linkTop.href = pPreco;
+                        linkTop.innerHTML = `<i class="fab fa-instagram"></i> @${pPreco.split('/').filter(Boolean).pop()}`;
+                    }
+                    if(linkFooter) linkFooter.href = pPreco;
+                    text = pPreco.split('/').filter(Boolean).pop() || text;
+                    continue;
                 }
 
                 let cardExistente = document.querySelector(`.product-card[data-id="${pID}"]`);
