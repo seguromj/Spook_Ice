@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -850,7 +851,7 @@
             <h2 style="margin:0">Checkout</h2>
         </div>
         <div class="form-group">
-            <label>Como deseja receber?</label>
+            <label>Metodo de Entrega</label>
             <select id="delivery-type" onchange="toggleFields()">
                 <option value="delivery">Delivery em Casa</option>
             </select>
@@ -861,13 +862,19 @@
             </div>
         </div>
         <div id="fields-delivery" style="display:block">
-            <div class="form-group"><label>Nome*</label><input type="text" id="dev-nome"></div>
+                <p style="font-size: 19px; text-align: center;">
+                        Para nos enviar a localização Exata<br> 
+                        Clique no botão abaixo<br>
+                        <strong style="color: blue">☟ ☟ ☟</strong>
+                </p>
             <button class="btn-main" onclick="obterLocalizacao()" style="background: #007bff; margin-bottom: 15px; color: white;">
                 📍 Enviar Minha Localização Atual
             </button>
+                <div class="form-group"><label>Nome*</label><input type="text" id="dev-nome"></div>
             <div id="address-confirmed" class="address-confirmed-badge">
                 <i class="fas fa-check-circle"></i> Endereço Exato Confirmado
             </div>
+                
             <div id="inputs-container-delivery">
                 <div class="form-group"><label>WhatsApp*</label><input type="text" id="dev-contato"></div>
                 <div class="form-group"><label>CEP*</label><input type="text" id="dev-CEP" oninput="mascaraCEP(this)" maxlength="9" placeholder="00000-000"></div>
