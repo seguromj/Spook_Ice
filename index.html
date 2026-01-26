@@ -1,11 +1,12 @@
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/Favicon.jpg" type="image/x-con">
-	<title>SPOOK ICE - Cardápio Digital</title>
+	<title>MERCURY - Cardápio Digital</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --primary: #FFD700; 
@@ -151,8 +152,8 @@
         .btn-flavor { background: var(--verde); color: var(--primary); }
     
     
-        /* MODAIS E CARRINHO */
-        #cart-modal, #checkout-modal, #payment-modal, #flavor-modal { display: none; position: fixed; bottom: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); l-index: 1000; }
+        /* MODAIS E CARRINHO - Ajustado z-index para ficar acima de tudo */
+        #cart-modal, #checkout-modal, #payment-modal, #flavor-modal { display: none; position: fixed; bottom: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; }
         .modal-content { position: absolute; bottom: 0; background: white; width: 100%; border-top-left-radius: 30px; border-top-right-radius: 30px; padding: 25px; box-sizing: border-box; max-height: 90vh; overflow-y: auto; }
         
         /* BOTÃO VOLTAR NOS MODAIS */
@@ -660,7 +661,7 @@
 
 <header id="header-capa">
     <div class="profile-img-container">
-        <img src="IMG/Logo.png" alt="Logo" class="profile-img" id="perfil-topo-img">
+        <img src="Logo.png" alt="Logo" class="profile-img" id="perfil-topo-img">
     </div>
 </header>
 
@@ -689,23 +690,23 @@
             <div class="carousel-container drag-scroll">
                     
                 <div class="product-card" data-id="1">
-                    <img src="img-produtos/Drinks-c-alcool/caipifrutas.jpg">
-                    <h3>CaipFrutas</h3>
-                        <span class="old-price">R$ 12.00</span> 
-                        <span class="price">R$ 10.00 
-                        <span class="badge-ml">350ml</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3>
+                        <span class="old-price">R$ 00.00</span> 
+                        <span class="price">R$ 00.00 
+                        <span class="badge-ml">0p0ml</span>
                         </span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('CaipFrutas', 10.00, ['🍋‍🟩 Limão 🍋‍🟩', '🍓 Morango 🍓', '🥂 Maracujá 🥂', '🥭 Manga 🥭'], 'img-produtos/Drinks-c-alcool/caipifrutas.jpg')">Escolher Sabor</button>
 				</div>
                     
                 <div class="product-card" data-id="2">
-                    <img src="img-produtos/Drinks-c-alcool/Caipigins.jpg">
-                    <h3>GIN's</h3>
-                        <span class="old-price">R$ 22.99</span> 
-                        <span class="price">R$ 20.00
-                        <span class="badge-ml">350ml</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3>
+                        <span class="old-price">R$ 00.00</span> 
+                        <span class="price">R$ 00.00
+                        <span class="badge-ml">000ml</span>
                         </span>
-                    <button class="btn-add btn-flavor" onclick="openFlavorModal('GIN`s', 20.00, ['Gin Tropical', 'Gin Tônica', 'Gin Red-Fruts'], 'img-produtos/Drinks-c-alcool/Caipigins.jpg')">Escolher Fruta</button>
+                    <button class="btn-add btn-flavor" onclick="openFlavorModal('GIN`s', 00.00, ['Gin Tropical', 'Gin Tônica', 'Gin Red-Fruts'], 'img-produtos/Drinks-c-alcool/Caipigins.jpg')">Escolher Fruta</button>
 				</div>
                 
                 
@@ -718,23 +719,23 @@
             <div class="carousel-container drag-scroll">
                     
                 <div class="product-card" data-id="200">
-                    <img src="img-produtos/Drinks-s-alcool/Soda-Italiana.jpeg">
-                    <h3>Soda Italiana</h3>
-                     <span class="old-price">R$ 8,00</span> 
-                     <span class="price">R$ 8,00
-                     <span class="badge-ml">350ml</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3>
+                     <span class="old-price">R$ 00,00</span> 
+                     <span class="price">R$ 00,00
+                     <span class="badge-ml">000ml</span>
                      </span>
-                    <button class="btn-add btn-flavor" onclick="openFlavorModal('Soda Italiana', 8.00, ['🍋‍🟩 Limão Siciliano 🍋‍🟩', '🍎🍓 Red Frits 🍓🍎', '🥂 Maracujá 🥂', '🍏 Maçan Vrede 🍏', '🍍 Abacaxi 🍍'], 'img-produtos/Drinks-s-alcool/Soda-Italiana.jpeg')">Escolher Sabor</button>
+                    <button class="btn-add btn-flavor" onclick="openFlavorModal('Soda Italiana', 00.00, ['🍋‍🟩 Limão Siciliano 🍋‍🟩', '🍎🍓 Red Frits 🍓🍎', '🥂 Maracujá 🥂', '🍏 Maçan Vrede 🍏', '🍍 Abacaxi 🍍'], 'img-produtos/Drinks-s-alcool/Soda-Italiana.jpeg')">Escolher Sabor</button>
                 </div>
                     
                 <div class="product-card" data-id="201">
-                    <img src="img-produtos/Drinks-s-alcool/Mongorango.jpeg">
+                    <img src=https://i.ibb.co/hxM64nXR/1000131748.png"">
                     <h3>Mongorango</h3>
-                     <span class="old-price">R$ 9,99</span> 
-                     <span class="price">R$ 8,00
-                     <span class="badge-ml">350ml</span>
+                     <span class="old-price">R$ 00,00</span> 
+                     <span class="price">R$ 00,00
+                     <span class="badge-ml">000ml</span>
                      </span>
-                    <button class="btn-add" onclick="animateAdd(this); addToCart('Mongorango', 8.00, 'img-produtos/Drinks-s-alcool/Mongorango.jpeg')">Adicionar</button>
+                    <button class="btn-add" onclick="animateAdd(this); addToCart('Mongorango', 00.00, 'img-produtos/Drinks-s-alcool/Mongorango.jpeg')">Adicionar</button>
 				</div>
                    
                 
@@ -746,21 +747,21 @@
    <div class="carousel-container drag-scroll">
                     
                 <div class="product-card" data-id="300">
-                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300">
-                    <h3>Pitu + RedBull + Gelo</h3>
-                    <span class="old-price">R$ 29,99</span> 
-                    <span class="price">R$ 27,00
-                    <span class="badge-ml">700ml</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3>
+                    <span class="old-price">R$ 00,00</span> 
+                    <span class="price">R$ 00,00
+                    <span class="badge-ml">000ml</span>
                     </span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('Pitu com Red Bull e Gelo sabor ', 27.00, ['Red Label', 'Jack Daniels', 'Ballantines', 'Passport'], 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300')">Escolher sabor do Gelo</button>
                 </div>
                     
                 <div class="product-card" data-id="301">
-                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300">
-                    <h3>Vodka + RedBull + Gelo</h3>
-                    <span class="old-price">R$ 29,99</span> 
-                    <span class="price">R$ 27,00
-                    <span class="badge-ml">700ml</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3>
+                    <span class="old-price">R$ 00,00</span> 
+                    <span class="price">R$ 00,00
+                    <span class="badge-ml">000ml</span>
                     </span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('Pitu com Red Bull e Gelo sabor ', 27.00, ['Red Label', 'Jack Daniels', 'Ballantines', 'Passport'], 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300')">Escolher sabor do Gelo</button>
                 </div>
@@ -775,14 +776,14 @@
             <div class="carousel-container drag-scroll">
 				
                 <div class="product-card" data-id="400">
-                    <img src="https://images.unsplash.com/photo-1597075095400-b2489955d49f?w=300">
-                    <h3>Combo Destilado</h3><span class="price">R$ 100.00</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.pnga">
+                    <h3>Nome do Produto</h3><span class="price">R$ 00.00</span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('Combo Destilado', 100.00, ['Vodka + 4 Energ', 'Gin + 4 Tonic', 'Whisky + 4 Energ', 'Vinho + Suco'], 'https://images.unsplash.com/photo-1597075095400-b2489955d49f?w=300')">Escolher Combo</button>
 				</div>
 				
                 <div class="product-card" data-id="401">
-                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300">
-                    <h3>Combo Casal</h3><span class="price">R$ 50.00</span>
+                    <img src="https://i.ibb.co/hxM64nXR/1000131748.png">
+                    <h3>Nome do Produto</h3><span class="price">R$ 00.00</span>
                     <button class="btn-add btn-flavor" onclick="openFlavorModal('Combo Casal', 50.00, ['2 Gins', '2 Caipirinhas', '2 Mojitos', '2 Sodas'], 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300')">Escolher Bebidas</button>
                 </div>
                 
@@ -920,54 +921,11 @@
         6px 6px 15px rgba(212, 175, 55, 0.5);
     background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
 ">
-    Spook Ice
+    Mercury
 </h1>
-        <p style="text-align: center;">👇 Para mais informações 👇</p>
 
-        
-    <div class="profiles-container">
-        <div class="barman-item-interactive" onclick="handleInteractiveProfile(this)">
-            <div class="glow-circle-interactive">
-                <img src="imgs/Perfil.Darwin.jpg" class="barman-photo-interactive">
-            </div>
-            <div class="side-modal-interactive">
-                <span class="modal-title-int">Mayckon</span>
-                <a href="Zap-Bot.html" target="_blank"><button class="btn-action-int btn-gold-int">WhatsApp Bot</button></a>
-                <a href="https://wa.me/5562995679219?text=Ol%C3%A1!%20Eu%20falo%20com%20o%20Mayckon%3F" target="_blank"><button class="btn-action-int btn-outline-int">WhatsApp</button></a>
-            </div>
-            <div class="name-label-interactive">Mayckon</div>
-        </div>
-
-        <div class="barman-item-interactive" onclick="handleInteractiveProfile(this)">
-            <div class="glow-circle-interactive">
-                <img src="imgs/Perfil.Douglas.png" class="barman-photo-interactive">
-            </div>
-            <div class="side-modal-interactive">
-                <span class="modal-title-int">Kamila</span>
-                <a href="Zap-Bot.html" target="_blank"><button class="btn-action-int btn-gold-int" onclick="alert('Especialidade: Moscow Mule!')">WhatsApp Bot</button></a>
-                <a href="https://wa.me/556283392844?text=Ol%C3%A1!%20Eu%20falo%20com%20o%20Barman%20Darwin%3F" target="_blank"><button class="btn-action-int btn-outline-int">WhatsApp</button></a>
-            </div>
-            <div class="name-label-interactive">Kamila</div>
-        </div>
-    </div>
-
-
-    <a href="https://www.instagram.com/nuance_drinks?igsh=MXEwcDh1Y3FpenozNw==" target="_blank" class="logo-container45" id="insta-link-footer">
-        <svg id="insta-icon" width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="insta-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#f09433"/>
-                    <stop offset="25%" stop-color="#e6683c"/>
-                    <stop offset="50%" stop-color="#dc2743"/>
-                    <stop offset="75%" stop-color="#cc2366"/>
-                    <stop offset="100%" stop-color="#bc1888"/>
-                </linearGradient>
-            </defs>
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.355 2.618 6.778 6.98 6.978 1.28.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="url(#insta-gradient)"/>
-        </svg>
-        <h1 id="brand-name"></h1>
-    </a>
-        <button onclick="abrirModalDireitos()" style="
+	
+    <button onclick="abrirModalDireitos()" style="
     background: rgba(212, 175, 55, 0.05);
     color: #D4AF37;
     border: 1px solid rgba(212, 175, 55, 0.3);
@@ -983,8 +941,8 @@
     gap: 12px;
     margin: 30px auto;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-">
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+
     <div style="
         background: #D4AF37;
         width: 32px;
@@ -1001,9 +959,9 @@
     </div>
 
     <div style="text-align: left;">
-        <span style="display: block; font-weight: 900; font-size: 0.75rem;">Criador do Site</span>
-        <span style="display: block; font-size: 0.55rem; opacity: 0.8;">Cliquei Aqui Para</span>
-        <span style="display: block; font-size: 0.55rem; opacity: 0.8;">Informaçõesa</span>
+        <span style="display: block; font-weight: 900; font-size: 0.75rem;">Quero Criar um Site</span>
+        <span style="display: block; font-size: 0.55rem; opacity: 0.8;"></span>
+        <span style="display: block; font-size: 0.55rem; opacity: 0.8;"></span>
 		
 	</div>
 </button>
@@ -1034,15 +992,10 @@
         <div style="height: 1px; background: linear-gradient(to right, transparent, #D4AF37, transparent); margin: 15px 0;"></div>
         
         <p style="line-height: 1.6; font-size: 0.95rem; color: #ccc;">
-            Design, conceito e inovação. Todo o conteúdo presente neste portal é de propriedade exclusiva da <strong>Nuance</strong>. 
+            Design, conceito e inovação. Todo o conteúdo presente neste portal é de propriedade exclusiva da <strong>Mercury</strong>. 
             Protegemos nossa criatividade para garantir que a excelência que você vê aqui permaneça única e autêntica.
         </p>
         
-        <p style="font-size: 0.8rem; color: #D4AF37; margin-top: 20px;">
-            © 2026 Nuance - Todos os Direitos Reservados.<br>
-			por<br>
-			👇
-        </p>
 
          <a href="Albatroz.htmla">
   <img class="img-albatroz" src="IMG_Albatroz.png" alt="Logo Albatroz">
