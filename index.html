@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -633,7 +632,23 @@
 #pay-link {
     display: none !important;
 }
-		
+
+/* NOVO ESTILO PARA ENDEREÇO CONFIRMADO */
+.address-confirmed-badge {
+    background: var(--success);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: none;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 		
    </style>
@@ -845,13 +860,21 @@
             </div>
         </div>
         <div id="fields-delivery" style="display:block">
-            <div class="form-group"><label>Nome*</label><input type="text" id="dev-nome"></div>
-            <div class="form-group"><label>WhatsApp*</label><input type="text" id="dev-contato"></div>
-            <div class="form-group"><label>CEP*</label><input type="text" id="dev-CEP" oninput="mascaraCEP(this)" maxlength="9" placeholder="00000-000"></div>
-            <div class="form-group"><label>Bairro*</label><input type="text" id="dev-bairro"></div>
-            <div class="form-group"><label>Rua*</label><input type="text" id="dev-rua"></div>
-            <div class="form-group"><label>Nº/Lote*</label><input type="text" id="dev-num"></div>
-            <div class="form-group"><label>Complemento</label><input type="text" id="dev-comp" placeholder="Apt, bloco, ponto de ref..."></div>
+            <button class="btn-main" onclick="obterLocalizacao()" style="background: #007bff; margin-bottom: 15px; color: white;">
+                📍 Enviar Minha Localização Atual
+            </button>
+            <div id="address-confirmed" class="address-confirmed-badge">
+                <i class="fas fa-check-circle"></i> Endereço Exato Confirmado
+            </div>
+            <div id="inputs-container-delivery">
+                <div class="form-group"><label>Nome*</label><input type="text" id="dev-nome"></div>
+                <div class="form-group"><label>WhatsApp*</label><input type="text" id="dev-contato"></div>
+                <div class="form-group"><label>CEP*</label><input type="text" id="dev-CEP" oninput="mascaraCEP(this)" maxlength="9" placeholder="00000-000"></div>
+                <div class="form-group"><label>Bairro*</label><input type="text" id="dev-bairro"></div>
+                <div class="form-group"><label>Rua*</label><input type="text" id="dev-rua"></div>
+                <div class="form-group"><label>Nº/Lote*</label><input type="text" id="dev-num"></div>
+                <div class="form-group"><label>Complemento</label><input type="text" id="dev-comp" placeholder="Apt, bloco, ponto de ref..."></div>
+            </div>
         </div>
         <button class="btn-main" onclick="sendWhatsApp()">Confirmar e Pagar</button>
    <br><br><br><br><br>
@@ -1112,6 +1135,7 @@ function revealText(str) {
     let currentPaymentLink = "#"; 
     let activeDiscount = 0;
     let freeShippingRequested = false;
+    let googleMapsLink = ""; // Armazena o link da localização
 
     // --- NOVA ESTRUTURA DE CUPONS POR BLOCOS ---
     const CUPONS_POR_BLOCO = {
@@ -1121,7 +1145,7 @@ function revealText(str) {
 	3: ["NU-WK39", "NU-7YJG", "NU-Z98O", "NU-0PB1", "NU-R7MJ", "NU-YPQH",  "NU-67QH", "NU-N51U", "ROX7", "NU-85CD"], // 15:00 - 17:59
 	4: ["NU-G69N", "NU-9WVI", "NU-LCNK", "NU-411K", "NU-36Y2", "NU-S3Q6",  "NU-XXE0", "NU-D7Q8", "NU-LC9K", "NU-C75A", "NU-KGGO", "NU-O333", "NU-JTHR", "NU-3923", "NU-RFU0", "NU-CH7W"], // 18:00 - 20:59
 	5: ["NU-EJ9Y", "NU-8JLY", "NU-4J79",  "NU-FWK5", "NU-PDQD", "NU-J6GP", "NU-WK1V", "NU-18R2", "NU-AP90", "NU-TFJY", "NU-2X75", "NU-MFIB", "NU-RL3Q", "NU-85BH", "NU-EBRG", "NU-02GR"], // 21:00 - 23:59
-	6: ["NU-SQAH", "NU-5EFC", "NU-LL9A", "NU-K7QT", "NU-U25O", "NU-RLE6",  "NU-IPM5", "NU-UMVD", "NU-5UHU", "NU-YWJ9", "NU-FI7C", "NU-ECFZ", "NU-NGZ4"], // 00:00 - 02:59
+	6: ["NU-SQAH", "NU-5EFC", "NU-LL9A", "NU-K7QT", "NU-U25O", "NU-RLE6",  "IPM5", "NU-UMVD", "NU-5UHU", "NU-YWJ9", "NU-FI7C", "NU-ECFZ", "NU-NGZ4"], // 00:00 - 02:59
 	7: ["NU-UP31", "NU-Q6G6", "NU-YD8Z", "NU-TZTR", "NU-4PWT", "NU-GZ12", "NU-86L5", "NU-IFFV", "NU-B5Q4",  "NU-CEN1", "NU-2HGW", "NU-POCI", "NU-NB4H"] // 03:00 - 05:59
 };
      const linksDePagamentoFixos = {
@@ -1300,6 +1324,33 @@ function revealText(str) {
         }, 500);
     }
 
+    function obterLocalizacao() {
+        if ("geolocation" in navigator) {
+            showToast("Aguarde, obtendo sua localização...");
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                googleMapsLink = `https://www.google.com/maps?q=${lat},${lon}`;
+                
+                // Preenche campos para evitar erro de validação
+                document.getElementById('dev-bairro').value = "Localização via GPS";
+                document.getElementById('dev-rua').value = "Clique no link do mapa";
+                document.getElementById('dev-num').value = "S/N";
+                document.getElementById('dev-CEP').value = "00000-000";
+                
+                // MODIFICAÇÃO SOLICITADA: Oculta campos e mostra o alerta verde
+                document.getElementById('inputs-container-delivery').style.display = 'none';
+                document.getElementById('address-confirmed').style.display = 'block';
+                
+                showToast("Localização obtida com sucesso! 📍");
+            }, function(error) {
+                alert("Erro ao obter localização. Certifique-se de que o GPS está ligado e você deu permissão.");
+            }, { enableHighAccuracy: true });
+        } else {
+            alert("Seu navegador não suporta geolocalização.");
+        }
+    }
+
           function applyCoupon() {
         const input = document.getElementById('coupon-input').value.toUpperCase().trim();
         const msg = document.getElementById('coupon-msg');
@@ -1436,6 +1487,14 @@ function revealText(str) {
         // Removido mesa e retirada, mantendo apenas delivery
         document.getElementById('fields-delivery').style.display = type === 'delivery' ? 'block' : 'none';
         document.getElementById('delivery-warning').style.display = type === 'delivery' ? 'block' : 'none';
+        
+        // Reset dos campos caso o usuário mude de opção
+        if(type === 'delivery') {
+            document.getElementById('inputs-container-delivery').style.display = 'block';
+            document.getElementById('address-confirmed').style.display = 'none';
+            googleMapsLink = "";
+        }
+        
         updateUI();
     }
 
@@ -1466,11 +1525,11 @@ function revealText(str) {
         const type = document.getElementById('delivery-type').value;
         const totalStr = document.getElementById('modal-total').innerText;
         
-        if (type === 'delivery') {
+        if (type === 'delivery' && !googleMapsLink) {
             const cepInput = document.getElementById('dev-CEP');
             if (!validarCEP(cepInput.value)) {
                 cepInput.classList.add('input-error');
-                alert("Por favor, insira um CEP válido para o delivery.");
+                alert("Por favor, insira um CEP válido ou utilize a localização via GPS.");
                 return;
             }
             cepInput.classList.remove('input-error');
@@ -1497,7 +1556,7 @@ function revealText(str) {
             dadosParaPlanilha.bairro = document.getElementById('dev-bairro').value;
             dadosParaPlanilha.rua = document.getElementById('dev-rua').value;
             dadosParaPlanilha.numero = document.getElementById('dev-num').value;
-            dadosParaPlanilha.comp = document.getElementById('dev-comp').value;
+            dadosParaPlanilha.comp = document.getElementById('dev-comp').value + (googleMapsLink ? " | GPS: " + googleMapsLink : "");
         }
 
         enviarParaPlanilha(dadosParaPlanilha);
@@ -1532,7 +1591,7 @@ function revealText(str) {
             bairro: bairroCli, 
             rua: ruaCli, 
             numero: numCli, 
-            comp: compCli,
+            comp: compCli + (googleMapsLink ? " | GPS: " + googleMapsLink : ""),
             pagamentoLink: currentPaymentLink,
 			statusImpressao: "IMPRIMIR"
         };
@@ -1545,15 +1604,20 @@ function revealText(str) {
             msg += `*DADOS PARA ENTREGA:*\n`;
             msg += `*Nome:* ${nomeCli}\n`;
             msg += `*WhatsApp:* ${zapCli}\n`;
-            msg += `*CEP:* ${cepCli}\n`;
-            msg += `*Endereço:* ${ruaCli}, Nº ${numCli}\n`;
-            msg += `*Bairro:* ${bairroCli}\n`;
+            
+            if (googleMapsLink) {
+                msg += `*📍 Localização GPS:* ${googleMapsLink}\n`;
+            } else {
+                msg += `*CEP:* ${cepCli}\n`;
+                msg += `*Endereço:* ${ruaCli}, Nº ${numCli}\n`;
+                msg += `*Bairro:* ${bairroCli}\n`;
+            }
             if (compCli) msg += `*Comp:* ${compCli}\n`;
             
             if (freeShippingRequested) {
                 msg += `*Frete:* Grátis (Cupom Aplicado)\n`;
             } else {
-                msg += `*Frete:* Taxa R$ 10,00\n`;
+                msg += `*Frete:* Taxa R$ 5,00\n`;
             }
         }
 
